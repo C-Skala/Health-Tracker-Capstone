@@ -6,7 +6,7 @@ from authentication.models import User
 # <<<<<<<<<<<<<<<<< EXAMPLE FOR STARTER CODE USE <<<<<<<<<<<<<<<<<
 
 
-class Food(models.Model):
+class Blood_Pressure(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     systolic= models.IntegerField(max_digits = 3)
     diastolic = models.IntegerField(max_digits = 3)

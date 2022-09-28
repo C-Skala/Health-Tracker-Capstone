@@ -6,7 +6,7 @@ from authentication.models import User
 # <<<<<<<<<<<<<<<<< EXAMPLE FOR STARTER CODE USE <<<<<<<<<<<<<<<<<
 
 
-class Food(models.Model):
+class Heart_Rate(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     heart_rate= models.IntegerField(max_digits = 3)
     comments = models.TextField (max_length=999)
