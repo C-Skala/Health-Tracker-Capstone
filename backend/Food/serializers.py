@@ -4,7 +4,7 @@ from .models import Food
 # <<<<<<<<<<<<<<<<< EXAMPLE FOR STARTER CODE USE <<<<<<<<<<<<<<<<<
 
 
-class CarSerializer(serializers.ModelSerializer):
+class FoodSerializer(serializers.ModelSerializer):
     class Meta:
         model = Food
         fields = ['id', 'name', 'calories', 'carbohydrates', 'sugar', 'sodium', 'servings', 'comments', 'user_id']

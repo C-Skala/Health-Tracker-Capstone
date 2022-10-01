@@ -4,7 +4,7 @@ from .models import Heart_Rate
 # <<<<<<<<<<<<<<<<< EXAMPLE FOR STARTER CODE USE <<<<<<<<<<<<<<<<<
 
 
-class CarSerializer(serializers.ModelSerializer):
+class HeartRateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Heart_Rate
         fields = ['id', 'heart_rate', 'comments', 'user_id']

@@ -4,7 +4,7 @@ from .models import Weight
 # <<<<<<<<<<<<<<<<< EXAMPLE FOR STARTER CODE USE <<<<<<<<<<<<<<<<<
 
 
-class CarSerializer(serializers.ModelSerializer):
+class WeightSerializer(serializers.ModelSerializer):
     class Meta:
         model = Weight
         fields = ['id', 'weight', 'comments', 'user_id']
