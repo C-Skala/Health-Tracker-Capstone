@@ -8,5 +8,5 @@ from authentication.models import User
 
 class Heart_Rate(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    heart_rate= models.IntegerField(max_digits = 3)
+    heart_rate= models.IntegerField()
     comments = models.TextField (max_length=999)

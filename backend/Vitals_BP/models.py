@@ -8,6 +8,6 @@ from authentication.models import User
 
 class Blood_Pressure(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    systolic= models.IntegerField(max_digits = 3)
-    diastolic = models.IntegerField(max_digits = 3)
+    systolic= models.IntegerField()
+    diastolic = models.IntegerField()
     comments = models.TextField (max_length=999)

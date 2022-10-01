@@ -8,5 +8,5 @@ from authentication.models import User
 
 class Blood_Sugar(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    sugar= models.IntegerField(max_digits = 3)
+    sugar= models.IntegerField()
     comments = models.TextField (max_length=999)

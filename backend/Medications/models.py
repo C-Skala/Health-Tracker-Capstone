@@ -9,7 +9,7 @@ from authentication.models import User
 class Medications(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=99)
-    strength = models.IntegerField(max_digits = 5)
+    strength = models.IntegerField()
     class_of_medication = models.TextField (max_length=999)
     time_taking1 = models.TimeField (auto_now=False, auto_now_add=False)
     time_taking2 = models.TimeField (auto_now=False, auto_now_add=False)

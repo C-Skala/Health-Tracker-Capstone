@@ -40,7 +40,12 @@ INSTALLED_APPS = [
     'rest_framework',
     'authentication.apps.AuthenticationConfig',
     'corsheaders',
-    'cars.apps.CarsConfig'  # This app is for example use only
+    'Food.apps.FoodConfig', 
+    'Medications.apps.MedicationsConfig',  
+    'Vitals_BP.apps.VitalsBPConfig', 
+    'Vitals_BS.apps.VitalsBsConfig', 
+    'Vitals_HR.apps.VitalsHrConfig', 
+    'Vitals_Weight.apps.VitalsWeightConfig',
 ]
 
 MIDDLEWARE = [

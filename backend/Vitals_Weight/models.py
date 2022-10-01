@@ -8,5 +8,5 @@ from authentication.models import User
 
 class Weight(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    weight= models.IntegerField(max_digits = 3)
+    weight= models.IntegerField()
     comments = models.TextField (max_length=999)
