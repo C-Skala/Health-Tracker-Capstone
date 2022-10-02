@@ -12,17 +12,18 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 @api_view(['GET', 'POST'])
 @permission_classes([IsAuthenticated])
 def food_list(request):
-   
-   
-    if request.method == 'GET':
-        foods = Food.objects.all()
-        serializer = FoodSerializer(foods, many=True)
-        return Response(serializer.data)
-    elif request.method == 'POST':
+    print(
+        'User ', f"{request.user.id} {request.user.email} {request.user.username}")
+    if request.method == 'POST':
         serializer = FoodSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data, status = status.HTTP_201_CREATED)
+        if serializer.is_valid():
+            serializer.save(user=request.user)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'GET':
+        food = Food.objects.filter(user_id=request.user.id)
+        serializer = FoodSerializer(food, many=True)
+        return Response(serializer.data)
             
 @api_view(['GET', 'PUT', 'DELETE'])
 @permission_classes([IsAuthenticated])
