@@ -14,4 +14,6 @@ class Food(models.Model):
     sugar = models.IntegerField()
     sodium = models.IntegerField()
     servings = models.IntegerField()
+    date = models.DateField(auto_now=False, auto_now_add=False)
     comments = models.TextField (max_length=999)
+

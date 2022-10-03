@@ -7,5 +7,5 @@ from .models import Food
 class FoodSerializer(serializers.ModelSerializer):
     class Meta:
         model = Food
-        fields = ['id', 'name', 'calories', 'carbohydrates', 'sugar', 'sodium', 'servings', 'comments', 'user_id']
+        fields = ['id', 'name', 'calories', 'carbohydrates', 'sugar', 'sodium', 'servings','date', 'comments', 'user_id']
         depth = 1

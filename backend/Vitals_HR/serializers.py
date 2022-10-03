@@ -7,5 +7,5 @@ from .models import Heart_Rate
 class HeartRateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Heart_Rate
-        fields = ['id', 'heart_rate', 'comments', 'user_id']
+        fields = ['id', 'heart_rate','date', 'time', 'comments', 'user_id']
         depth = 1

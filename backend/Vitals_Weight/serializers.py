@@ -7,5 +7,5 @@ from .models import Weight
 class WeightSerializer(serializers.ModelSerializer):
     class Meta:
         model = Weight
-        fields = ['id', 'weight', 'comments', 'user_id']
+        fields = ['id', 'weight', 'date', 'comments', 'user_id']
         depth = 1

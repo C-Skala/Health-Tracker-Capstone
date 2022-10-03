@@ -7,5 +7,5 @@ from .models import Blood_Sugar
 class BloodSugarSerializer(serializers.ModelSerializer):
     class Meta:
         model = Blood_Sugar
-        fields = ['id', 'sugar', 'comments', 'user_id']
+        fields = ['id', 'sugar','date', 'time', 'comments', 'user_id']
         depth = 1

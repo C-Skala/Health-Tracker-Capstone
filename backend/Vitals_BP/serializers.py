@@ -7,5 +7,5 @@ from .models import Blood_Pressure
 class BloodPressureSerializer(serializers.ModelSerializer):
     class Meta:
         model = Blood_Pressure
-        fields = ['id', 'systolic', 'diastolic', 'comments', 'user_id']
+        fields = ['id', 'systolic', 'diastolic','date', 'time', 'comments', 'user_id']
         depth = 1
