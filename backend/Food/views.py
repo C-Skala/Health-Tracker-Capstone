@@ -10,7 +10,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated, AllowAny
 
 @api_view(['GET', 'POST'])
-@permission_classes([IsAuthenticated])
+@permission_classes([AllowAny])
 def food_list(request):
     print(
         'User ', f"{request.user.id} {request.user.email} {request.user.username}")
@@ -40,3 +40,4 @@ def food_detail(request, pk):
     elif request.method == 'DELETE':
         foods.delete()
         return Response(status= status.HTTP_204_NO_CONTENT)
+    
