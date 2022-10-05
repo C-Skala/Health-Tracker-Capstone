@@ -30,7 +30,7 @@ def Med_list(request):
 def Med_detail(request, pk):
     meds = get_object_or_404(Medications, pk=pk)
     if request.method == 'GET':
-        serializer = MedicationsSerializer (Medications)
+        serializer = MedicationsSerializer (meds)
         return Response(serializer.data)
     elif request.method == 'PUT':
         serializer = MedicationsSerializer(meds, data = request.data)
