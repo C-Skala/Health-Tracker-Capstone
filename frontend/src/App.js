@@ -8,11 +8,11 @@ import axios from "axios";
 import HomePage from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
-//import BloodPressurePage from "./pages/Blood Pressure/bloodPressurePage";
+import BloodPressurePage from "./pages/Blood Pressure/BloodPressurePage";
 //import BloodSugarPage from "./pages/Blood Sugar/bloodSugarPage";
 //import FoodPage from "./pages/Food/foodPage"
 //import HeartRatePage from "./pages/Heart Rate/heartRatePage"
-//import MedicationsPage from "./pages/Medications/MedicationsPage"
+import MedicationsPage from "./pages/Medications/MedicationsPage"
 import WeightPage from "./pages/Weight/weightPage"
 
 // Component Imports
@@ -135,12 +135,10 @@ function App() {
     getAllWeight();
   }, [token]);
 
- //<Route path="/food" element={<FoodPage />} />
- //<Route path="/medications" element={<MedicationsPage />} />
- //<Route path="/blood pressure" element={<BloodPressurePage />} />
- //<Route path="/blood sugar" element={<BloodSugarPage />} />
- //<Route path="/heart rate" element={<HeartRatePage />} />
-  
+ 
+  //<Route path="/food" element={<PrivateRoute><FoodPage parentFood = {food}/></PrivateRoute>} />
+    //    <Route path="/BS" element={<PrivateRoute><BloodSugarPage parentBloodSugar = {bloodSugar}/></PrivateRoute>} />
+      //  <Route path="/HR" element={<PrivateRoute><HeartRatePage parentHeartRate = {heartRate}/></PrivateRoute>} />
   
   return (
     <div>
@@ -157,6 +155,9 @@ function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/weight" element={<PrivateRoute><WeightPage parentWeight = {weight} /></PrivateRoute>} />
+        <Route path="/BP" element={<PrivateRoute><BloodPressurePage parentBloodPressure = {bloodPressure} /></PrivateRoute>} />
+        <Route path="/medications" element={<PrivateRoute><MedicationsPage parentMedications = {medications}/></PrivateRoute>} />
+        
       </Routes>
       <Footer />
     </div>

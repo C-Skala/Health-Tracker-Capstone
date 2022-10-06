@@ -26,7 +26,7 @@ const WeightPage = (props) => {
   
    function refreshPage() {
     window.location.reload(false);
-  }
+  } 
   
   
   

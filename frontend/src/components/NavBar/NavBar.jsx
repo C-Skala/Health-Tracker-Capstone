@@ -22,13 +22,13 @@ const Navbar = () => {
           <Link to="/medications" style={{ textDecoration: "none", color: "white" }}>
             <b>Medications </b>
           </Link>
-          <Link to="/blood pressure" style={{ textDecoration: "none", color: "white" }}>
+          <Link to="/BP" style={{ textDecoration: "none", color: "white" }}>
             <b>Blood Pressure </b>
           </Link>
-          <Link to="/blood sugar" style={{ textDecoration: "none", color: "white" }}>
+          <Link to="/BS" style={{ textDecoration: "none", color: "white" }}>
             <b>Blood Sugar </b>
           </Link>
-          <Link to="/heart rate" style={{ textDecoration: "none", color: "white" }}>
+          <Link to="/HR" style={{ textDecoration: "none", color: "white" }}>
             <b>Heart Rate </b>
           </Link>
           <Link to="/weight" style={{ textDecoration: "none", color: "white" }}>
