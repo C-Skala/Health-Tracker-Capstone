@@ -4,6 +4,7 @@ import useAuth from '../../hooks/useAuth';
 import useCustomForm from '../../hooks/useCustomForm';
 
 let initialValues = {
+    name: "",
     strength: "",
     class_of_medication: "",
     time_taking1:"",
@@ -43,16 +44,20 @@ const MedicationsPage = (props) => {
           <table className = 'table'>
             <thead>
               <tr>
+                <th>Name of Medication</th>
                 <th>strength</th>
                 <th>Class of Medication</th>
-                <th>Date</th>
                 <th>Time Taking (1)</th>
+                <th>Time Taking (2)</th>
+                <th>Time Taking (3)</th>
+                <th>Time Taking (4)</th>
               </tr>
             </thead>
               <tbody>
                 {props.parentMedications.map((medications, index) => {
                 return(
                 <tr key={index}>
+                  <td>{medications.name}</td>
                   <td>{medications.strength}</td>
                   <td>{medications.class_of_medication}</td>
                   <td>{medications.time_taking1}</td>
@@ -67,6 +72,8 @@ const MedicationsPage = (props) => {
         </div>
         <div>
             <form onSubmit = {handleSubmit}>
+            <label>Name of Medication:{" "}</label>
+                  <input type = 'text' name = 'name' value = {formData.name} onChange = {handleInputChange}/>
                 <label>Strength:{" "}</label>
                   <input type = 'number' name = 'strength' value = {formData.strength} onChange = {handleInputChange}/>
                 <label>Class of Medication:{" "}</label>

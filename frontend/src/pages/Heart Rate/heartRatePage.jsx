@@ -1,0 +1,79 @@
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import useAuth from '../../hooks/useAuth';
+import useCustomForm from '../../hooks/useCustomForm';
+
+let initialValues = {
+    heart_rate: "",
+    date:"",
+    time:"",
+    comments:"",
+
+};
+
+
+const HeartRatePage = (props) => {
+  const [user, token] = useAuth();  
+  const [formData, handleInputChange, handleSubmit] = useCustomForm(initialValues, postNewHR)
+
+
+  async function postNewHR(){
+    const response = await axios.post('http://127.0.0.1:8000/api/HR/', formData, {
+      headers: {
+        Authorization: "Bearer " + token,
+      }
+    })
+    console.log(response.data)
+   }
+  
+   function refreshPage() {
+    window.location.reload(false);
+  } 
+  
+  
+  
+  
+  
+  return ( 
+      <div>
+        <div>
+          <table className = 'table'>
+            <thead>
+              <tr>
+                <th>Heart Rate</th>
+                <th>Date</th>
+                <th>Time</th>
+              </tr>
+            </thead>
+              <tbody>
+                {props.parentHeartRate.map((heartRate, index) => {
+                return(
+                <tr key={index}>
+                  <td>{heartRate.heart_rate}</td>
+                  <td>{heartRate.date}</td>
+                  <td>{heartRate.time}</td>
+                </tr>
+                  );
+                })}
+            </tbody>
+          </table>
+        </div>
+        <div>
+            <form onSubmit = {handleSubmit}>
+                <label>Heart Rate:{" "}</label>
+                  <input type = 'number' name = 'heart_rate' value = {formData.heart_rate} onChange = {handleInputChange}/>
+                <label>Date:{" "}</label>
+                  <input type = 'date' name = 'date' value = {formData.date} onChange = {handleInputChange}/>
+                <label>Time:{" "}</label>
+                  <input type = 'time' name = 'time' value = {formData.time} onChange = {handleInputChange}/>
+                <label>comments:{" "}</label>
+                  <input type = "text" name = 'comments' value = {formData.comments} onChange = {handleInputChange}/>
+                <button onClick={refreshPage}>submit</button>
+            </form>
+        </div> 
+      </div>
+        
+     );
+}
+ 
+export default HeartRatePage;

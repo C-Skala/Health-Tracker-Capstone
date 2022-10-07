@@ -9,9 +9,9 @@ import HomePage from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import BloodPressurePage from "./pages/Blood Pressure/BloodPressurePage";
-//import BloodSugarPage from "./pages/Blood Sugar/bloodSugarPage";
-//import FoodPage from "./pages/Food/foodPage"
-//import HeartRatePage from "./pages/Heart Rate/heartRatePage"
+import BloodSugarPage from "./pages/Blood Sugar/bloodSugarPage";
+import FoodPage from "./pages/Food/foodPage"
+import HeartRatePage from "./pages/Heart Rate/heartRatePage"
 import MedicationsPage from "./pages/Medications/MedicationsPage"
 import WeightPage from "./pages/Weight/weightPage"
 
@@ -136,9 +136,7 @@ function App() {
   }, [token]);
 
  
-  //<Route path="/food" element={<PrivateRoute><FoodPage parentFood = {food}/></PrivateRoute>} />
-    //    <Route path="/BS" element={<PrivateRoute><BloodSugarPage parentBloodSugar = {bloodSugar}/></PrivateRoute>} />
-      //  <Route path="/HR" element={<PrivateRoute><HeartRatePage parentHeartRate = {heartRate}/></PrivateRoute>} />
+  
   
   return (
     <div>
@@ -157,7 +155,9 @@ function App() {
         <Route path="/weight" element={<PrivateRoute><WeightPage parentWeight = {weight} /></PrivateRoute>} />
         <Route path="/BP" element={<PrivateRoute><BloodPressurePage parentBloodPressure = {bloodPressure} /></PrivateRoute>} />
         <Route path="/medications" element={<PrivateRoute><MedicationsPage parentMedications = {medications}/></PrivateRoute>} />
-        
+        <Route path="/food" element={<PrivateRoute><FoodPage parentFood = {food}/></PrivateRoute>} />
+        <Route path="/BS" element={<PrivateRoute><BloodSugarPage parentBloodSugar = {bloodSugar}/></PrivateRoute>} />
+        <Route path="/HR" element={<PrivateRoute><HeartRatePage parentHeartRate = {heartRate}/></PrivateRoute>} />
       </Routes>
       <Footer />
     </div>
