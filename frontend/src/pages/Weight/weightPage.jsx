@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import useAuth from '../../hooks/useAuth';
 import useCustomForm from '../../hooks/useCustomForm';
+import { Chart } from "react-google-charts";
 
 let initialValues = {
   weight: "",
@@ -13,7 +14,7 @@ let initialValues = {
 const WeightPage = (props) => {
   const [user, token] = useAuth();  
   const [formData, handleInputChange, handleSubmit] = useCustomForm(initialValues, postNewWeight)
-
+  const[chartData, setChartData] = useState([]);
 
   async function postNewWeight(){
     const response = await axios.post('http://127.0.0.1:8000/api/Weight/', formData, {
@@ -29,6 +30,14 @@ const WeightPage = (props) => {
   } 
   
   
+   
+  useEffect(() => {
+      let tempChartData = props.parentWeight.map(entry => {
+          return [entry.date, entry.weight];
+      })
+      setChartData(tempChartData);
+  }, [props.parentWeight]);
+
   
   
   
@@ -65,6 +74,16 @@ const WeightPage = (props) => {
                 <button onClick={refreshPage}>submit</button>
             </form>
         </div> 
+        <div>
+          <Chart
+            chartType="LineChart"
+            data={[["Date", "Weight"], ...chartData]}
+            width="100%"
+            height="400px"
+            options = {{legend: {position: 'bottom'}}}
+            legendToggle
+/>
+        </div>
       </div>
         
      );
