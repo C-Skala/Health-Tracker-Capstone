@@ -3,6 +3,7 @@ import axios from 'axios';
 import useAuth from '../../hooks/useAuth';
 import useCustomForm from '../../hooks/useCustomForm';
 import { Chart } from "react-google-charts";
+import './Weight.css'
 
 let initialValues = {
   weight: "",
@@ -30,7 +31,7 @@ const WeightPage = (props) => {
   } 
   
   
-   
+   //function to get chart data
   useEffect(() => {
       let tempChartData = props.parentWeight.map(entry => {
           return [entry.date, entry.weight];
@@ -65,8 +66,8 @@ const WeightPage = (props) => {
         </div>
         <div>
             <form onSubmit = {handleSubmit}>
-                <label>Weight:{" "}</label>
-                  <input type = 'number' name = 'weight' value = {formData.weight} onChange = {handleInputChange}/>
+               <label>Weight:{" "}</label>
+                <input type = 'number' name = 'weight' value = {formData.weight} onChange = {handleInputChange}/>
                 <label>Date:{" "}</label>
                   <input type = 'date' name = 'date' value = {formData.date} onChange = {handleInputChange}/>
                 <label>comments:{" "}</label>
@@ -82,7 +83,7 @@ const WeightPage = (props) => {
             height="400px"
             options = {{legend: {position: 'bottom'}}}
             legendToggle
-/>
+          />
         </div>
       </div>
         

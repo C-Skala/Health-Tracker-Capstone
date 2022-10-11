@@ -40,9 +40,10 @@ const BloodSugarPage = (props) => {
     series: { 5: { type: "line" } }
   }
    
+
   useEffect(() => {
     let tempChartData = props.parentBloodSugar.map(entry => {
-        return [entry.sugar, entry.date, entry.time];
+        return [entry.date, entry.sugar];
     })
     setChartData(tempChartData);
 }, [props.parentBloodSugar]);
@@ -90,14 +91,14 @@ const BloodSugarPage = (props) => {
             </form>
         </div> 
         <div>
-          <Chart
-            chartType="ComboChart"
-            data ={[["Date", "Time", "Sugar"], ...chartData]}
+        <Chart
+            chartType="LineChart"
+            data={[["Date", "Sugar"], ...chartData]}
             width="100%"
             height="400px"
-            options = {options}
+            options = {{legend: {position: 'bottom'}}}
             legendToggle
-/>
+          />
         </div>
       </div>
         
