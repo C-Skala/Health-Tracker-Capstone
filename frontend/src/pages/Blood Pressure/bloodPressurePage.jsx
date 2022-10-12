@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import useAuth from '../../hooks/useAuth';
 import useCustomForm from '../../hooks/useCustomForm';
+import { Chart } from "react-google-charts";
 
 let initialValues = {
     systolic: "",
@@ -16,6 +17,7 @@ let initialValues = {
 const BloodPressurePage = (props) => {
   const [user, token] = useAuth();  
   const [formData, handleInputChange, handleSubmit] = useCustomForm(initialValues, postNewBP)
+  const[chartData, setChartData] = useState([]);
 
 
   async function postNewBP(){
@@ -32,7 +34,12 @@ const BloodPressurePage = (props) => {
   } 
   
   
-  
+  useEffect(() => {
+    let tempChartData = props.parentBloodPressure.map(entry => {
+        return [entry.date, entry.systolic, entry.diastolic];
+    })
+    setChartData(tempChartData);
+}, [props.parentBloodPressure]);
   
   
   return ( 
@@ -76,6 +83,16 @@ const BloodPressurePage = (props) => {
                 <button onClick={refreshPage}>submit</button>
             </form>
         </div> 
+        <div>
+          <Chart
+            chartType="LineChart"
+            data={[["Date", "Systolic", "Diastolic"], ...chartData]}
+            width="100%"
+            height="400px"
+            options = {{legend: {position: 'bottom'}}}
+            legendToggle
+          />
+        </div>
       </div>
         
      );

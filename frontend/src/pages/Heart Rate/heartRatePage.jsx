@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import useAuth from '../../hooks/useAuth';
 import useCustomForm from '../../hooks/useCustomForm';
+import { Chart } from "react-google-charts"; 
 
 let initialValues = {
     heart_rate: "",
@@ -15,6 +16,7 @@ let initialValues = {
 const HeartRatePage = (props) => {
   const [user, token] = useAuth();  
   const [formData, handleInputChange, handleSubmit] = useCustomForm(initialValues, postNewHR)
+  const[chartData, setChartData] = useState([]);
 
 
   async function postNewHR(){
@@ -31,7 +33,12 @@ const HeartRatePage = (props) => {
   } 
   
   
-  
+  useEffect(() => {
+    let tempChartData = props.parentHeartRate.map(entry => {
+        return [entry.date, entry.heart_rate];
+    })
+    setChartData(tempChartData);
+}, [props.parentHeartRate]);
   
   
   return ( 
@@ -71,6 +78,16 @@ const HeartRatePage = (props) => {
                 <button onClick={refreshPage}>submit</button>
             </form>
         </div> 
+        <div>
+          <Chart
+            chartType="LineChart"
+            data={[["Date", "Heart Rate"], ...chartData]}
+            width="100%"
+            height="400px"
+            options = {{legend: {position: 'bottom'}}}
+            legendToggle
+          />
+        </div>
       </div>
         
      );
