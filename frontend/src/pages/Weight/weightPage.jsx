@@ -4,6 +4,10 @@ import useAuth from '../../hooks/useAuth';
 import useCustomForm from '../../hooks/useCustomForm';
 import { Chart } from "react-google-charts";
 import './Weight.css';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Table from 'react-bootstrap/Table';
 
 let initialValues = {
   weight: "",
@@ -18,6 +22,11 @@ const WeightPage = (props) => {
   const [user, token] = useAuth();  
   const [formData, handleInputChange, handleSubmit] = useCustomForm(initialValues, postNewWeight)
   const[chartData, setChartData] = useState([]);
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
 
   async function postNewWeight(){
     const response = await axios.post('http://127.0.0.1:8000/api/Weight/', formData, {
@@ -28,10 +37,17 @@ const WeightPage = (props) => {
     console.log(response.data)
    }
   
+
+   async function deleteWeight(){
+    const response = await axios.delete(`http://127.0.0.1:8000/api/Weight/${props.parentWeight.weight.id}/`)
+    console.log(response.data)
+}
+ 
+
    function refreshPage() {
     window.location.reload(false);
   } 
-  
+ 
   
    //function to get chart data
   useEffect(() => {
@@ -41,13 +57,10 @@ const WeightPage = (props) => {
       setChartData(tempChartData);
   }, [props.parentWeight]);
 
-  
-  
-  
   return ( 
       <div>
         <div>
-          <table className = 'table'>
+          <Table striped bordered hover>
             <thead>
               <tr>
                 <th>Weight</th>
@@ -64,10 +77,25 @@ const WeightPage = (props) => {
                   );
                 })}
             </tbody>
-          </table>
-        </div>
+          </Table>
+        </div> 
         <div>
-            <form onSubmit = {handleSubmit}>
+        <>
+      <Button variant="primary" onClick={handleShow}>
+        Post a New Weight
+      </Button>
+
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Modal title</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+     <form onSubmit = {handleSubmit}>
                <label>Weight:{" "}</label>
                 <input type = 'number' name = 'weight' value = {formData.weight} onChange = {handleInputChange}/>
                 <label>Date:{" "}</label>
@@ -76,38 +104,74 @@ const WeightPage = (props) => {
                   <input type = "text" name = 'comments' value = {formData.comments} onChange = {handleInputChange}/>
                 <button onClick={refreshPage}>submit</button>
             </form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+          </div>
+          <div>
+          <>
+      <Button variant="primary" onClick={handleShow}>
+        Show Comments / Delete Posts
+      </Button>
+
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Chart with comments</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+        <div>
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>Weight</th>
+                <th>Date</th>
+                <th>Comments</th>
+              </tr>
+            </thead>
+              <tbody>
+                {props.parentWeight.map((weight, index) => {
+                return(
+                <tr key={index}>
+                  <td>{weight.weight}</td>
+                  <td>{weight.date}</td>
+                  <td>{weight.comments}</td>
+                  <td><button onClick = {deleteWeight}>delete weight</button></td>
+                </tr>
+                  );
+                })}
+            </tbody>
+          </Table>
         </div> 
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </> 
+          </div> 
         <div>
           <Chart
             chartType="LineChart"
             data={[["Date", "Weight"], ...chartData]}
             width="100%"
             height="400px"
-            options = {{legend: {position: 'bottom'}}}
+            options = {{legend: {position: 'bottom'}, }}
             legendToggle
           />
         </div>
-        <div>
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
-            Post Song
-          </button>
-          <div class="modal" id="myModal">
-          <div class="modal-dialog">
-          <div class="modal-content">
-          <div class="modal-header">
-           <h4 class="modal-title">Modal Heading</h4>
-           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-           <div class="modal-body">
-            Modal body..
-            </div>
-            <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-            </div>
-            </div>
-            </div>
-            </div>
-           </div>
-          </div>
+       
         </div>
         
      );

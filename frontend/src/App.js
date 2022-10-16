@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Pages Imports
 import HomePage from "./pages/HomePage/HomePage";
@@ -17,7 +18,6 @@ import WeightPage from "./pages/Weight/weightPage"
 
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
-import Footer from "./components/Footer/Footer";
 import useAuth from "./hooks/useAuth";
 
 // Util Imports
@@ -146,7 +146,7 @@ function App() {
           path="/"
           element={
             <PrivateRoute>
-              <HomePage />
+              <HomePage parentWeight = {weight} parentBloodPressure = {bloodPressure} parentMedications = {medications} parentFood = {food} parentBloodSugar = {bloodSugar} parentHeartRate = {heartRate}/>
             </PrivateRoute>
           }
         />
@@ -159,7 +159,6 @@ function App() {
         <Route path="/BS" element={<PrivateRoute><BloodSugarPage parentBloodSugar = {bloodSugar}/></PrivateRoute>} />
         <Route path="/HR" element={<PrivateRoute><HeartRatePage parentHeartRate = {heartRate}/></PrivateRoute>} />
       </Routes>
-      <Footer />
     </div>
   );
 }
