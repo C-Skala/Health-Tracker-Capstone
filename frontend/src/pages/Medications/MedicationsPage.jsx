@@ -2,6 +2,11 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import useAuth from '../../hooks/useAuth';
 import useCustomForm from '../../hooks/useCustomForm';
+import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 let initialValues = {
     name: "",
@@ -18,10 +23,17 @@ let initialValues = {
 
 const MedicationsPage = (props) => {
   const [user, token] = useAuth();  
-  const [formData, handleInputChange, handleSubmit] = useCustomForm(initialValues, postNewBP)
+  const [formData, handleInputChange, handleSubmit] = useCustomForm(initialValues, postNewMed)
+  const [show, setShow] = useState(false);
+  const [showPost, setPostShow] = useState(false);
 
 
-  async function postNewBP(){
+  const handlePostClose = () => setPostShow(false);
+  const handlePostShow = () => setPostShow(true);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  async function postNewMed(){
     const response = await axios.post('http://127.0.0.1:8000/api/meds/', formData, {
       headers: {
         Authorization: "Bearer " + token,
@@ -34,14 +46,17 @@ const MedicationsPage = (props) => {
     window.location.reload(false);
   } 
   
-  
+  async function deleteMed(){
+    const response = await axios.delete(`http://127.0.0.1:8000/api/meds/${props.parentMedications.id}/`)
+    console.log(response.data)
+}
   
   
   
   return ( 
       <div>
         <div>
-          <table className = 'table'>
+          < Table striped bordered hover>
             <thead>
               <tr>
                 <th>Name of Medication</th>
@@ -68,8 +83,24 @@ const MedicationsPage = (props) => {
                   );
                 })}
             </tbody>
-          </table>
+          </Table>
         </div>
+        <div>
+        <>
+      <Button variant="primary" onClick={handlePostShow}>
+        Post a New Med
+      </Button>
+      <Modal
+        name = 'Post'
+        show={showPost}
+        onHide={handlePostClose}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Post A New Med</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
         <div>
             <form onSubmit = {handleSubmit}>
             <label>Name of Medication:{" "}</label>
@@ -91,6 +122,67 @@ const MedicationsPage = (props) => {
                 <button onClick={refreshPage}>submit</button>
             </form>
         </div> 
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handlePostClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+          </div>
+          <div>
+          <>
+      <Button variant="primary" onClick={handleShow}>
+        Show Comments / Delete Posts
+      </Button>
+
+      <Modal
+        name = 'full table'
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Chart with comments</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+        <div>
+          < Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>Name of Medication</th>
+                <th>strength</th>
+                <th>Class of Medication</th>
+                <th>Comments</th>
+              </tr>
+            </thead>
+              <tbody>
+                {props.parentMedications.map((medications, index) => {
+                return(
+                <tr key={index}>
+                  <td>{medications.name}</td>
+                  <td>{medications.strength}</td>
+                  <td>{medications.class_of_medication}</td>
+                  <td>{medications.comments}</td>
+                  <td><button onClick = {deleteMed}>delete Med</button></td>
+                </tr>
+                  );
+                })}
+            </tbody>
+          </Table>
+        </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </> 
+          </div> 
+        
       </div>
         
      );

@@ -23,10 +23,12 @@ const WeightPage = (props) => {
   const [formData, handleInputChange, handleSubmit] = useCustomForm(initialValues, postNewWeight)
   const[chartData, setChartData] = useState([]);
   const [show, setShow] = useState(false);
+  const [showPost, setPostShow] = useState(false);
 
+  const handlePostClose = () => setPostShow(false);
+  const handlePostShow = () => setPostShow(true);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
 
   async function postNewWeight(){
     const response = await axios.post('http://127.0.0.1:8000/api/Weight/', formData, {
@@ -38,10 +40,15 @@ const WeightPage = (props) => {
    }
   
 
+   
    async function deleteWeight(){
-    const response = await axios.delete(`http://127.0.0.1:8000/api/Weight/${props.parentWeight.weight.id}/`)
+    const response = await axios.delete(`http://127.0.0.1:8000/api/Weight/${props.parentWeight.id}/`, formData, {
+      headers: {
+        Authorization: "Bearer " + token,
+      }
+    })
     console.log(response.data)
-}
+   }
  
 
    function refreshPage() {
@@ -81,21 +88,22 @@ const WeightPage = (props) => {
         </div> 
         <div>
         <>
-      <Button variant="primary" onClick={handleShow}>
+      <Button variant="primary" onClick={handlePostShow}>
         Post a New Weight
       </Button>
-
       <Modal
-        show={show}
-        onHide={handleClose}
+        name = 'Post'
+        show={showPost}
+        onHide={handlePostClose}
         backdrop="static"
         keyboard={false}
       >
         <Modal.Header closeButton>
-          <Modal.Title>Modal title</Modal.Title>
+          <Modal.Title>Post A New Weight</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-     <form onSubmit = {handleSubmit}>
+     <div>
+      <form onSubmit = {handleSubmit}>
                <label>Weight:{" "}</label>
                 <input type = 'number' name = 'weight' value = {formData.weight} onChange = {handleInputChange}/>
                 <label>Date:{" "}</label>
@@ -104,22 +112,35 @@ const WeightPage = (props) => {
                   <input type = "text" name = 'comments' value = {formData.comments} onChange = {handleInputChange}/>
                 <button onClick={refreshPage}>submit</button>
             </form>
+     </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button variant="secondary" onClick={handlePostClose}>
             Close
           </Button>
         </Modal.Footer>
       </Modal>
     </>
           </div>
-          <div>
+          
+        <div>
+          <Chart
+            chartType="LineChart"
+            data={[["Date", "Weight"], ...chartData]}
+            width="100%"
+            height="400px"
+            options = {{legend: {position: 'bottom'}, }}
+            legendToggle
+          />
+        </div>
+        <div>
           <>
       <Button variant="primary" onClick={handleShow}>
         Show Comments / Delete Posts
       </Button>
 
       <Modal
+        name = 'full table'
         show={show}
         onHide={handleClose}
         backdrop="static"
@@ -145,7 +166,7 @@ const WeightPage = (props) => {
                   <td>{weight.weight}</td>
                   <td>{weight.date}</td>
                   <td>{weight.comments}</td>
-                  <td><button onClick = {deleteWeight}>delete weight</button></td>
+                  <td><button onClick = {deleteWeight} id = {props.parentWeight.id}>delete weight</button></td>
                 </tr>
                   );
                 })}
@@ -161,17 +182,6 @@ const WeightPage = (props) => {
       </Modal>
     </> 
           </div> 
-        <div>
-          <Chart
-            chartType="LineChart"
-            data={[["Date", "Weight"], ...chartData]}
-            width="100%"
-            height="400px"
-            options = {{legend: {position: 'bottom'}, }}
-            legendToggle
-          />
-        </div>
-       
         </div>
         
      );

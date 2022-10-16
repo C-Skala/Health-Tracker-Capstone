@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import useAuth from '../../hooks/useAuth';
 import useCustomForm from '../../hooks/useCustomForm';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Table from 'react-bootstrap/Table';
 
 let initialValues = {
     name: "",
@@ -19,7 +23,13 @@ let initialValues = {
 const FoodPage = (props) => {
   const [user, token] = useAuth();  
   const [formData, handleInputChange, handleSubmit] = useCustomForm(initialValues, postNewFood)
+  const [show, setShow] = useState(false);
+  const [showPost, setPostShow] = useState(false);
 
+  const handlePostClose = () => setPostShow(false);
+  const handlePostShow = () => setPostShow(true);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   async function postNewFood(){
     const response = await axios.post('http://127.0.0.1:8000/api/food/', formData, {
@@ -35,13 +45,16 @@ const FoodPage = (props) => {
   } 
   
   
-  
+  async function deleteFood(){
+    const response = await axios.delete(`http://127.0.0.1:8000/api/food/${props.parentWeight.weight.id}/`)
+    console.log(response.data)
+}
   
   
   return ( 
       <div>
         <div>
-          <table className = 'table'>
+        <Table striped bordered hover>
             <thead>
               <tr>
                 <th>Food Name</th>
@@ -68,8 +81,24 @@ const FoodPage = (props) => {
                   );
                 })}
             </tbody>
-          </table>
+          </Table>
         </div>
+        <div>
+        <>
+      <Button variant="primary" onClick={handlePostShow}>
+        Post a New Food
+      </Button>
+      <Modal
+        name = 'Post'
+        show={showPost}
+        onHide={handlePostClose}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Post A New Food</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
         <div>
             <form onSubmit = {handleSubmit}>
                 <label>Nme of Food:{" "}</label>
@@ -90,7 +119,67 @@ const FoodPage = (props) => {
                   <input type = "text" name = 'comments' value = {formData.comments} onChange = {handleInputChange}/>
                 <button onClick={refreshPage}>submit</button>
             </form>
-        </div> 
+        </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handlePostClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+          </div>
+          <div>
+          <>
+      <Button variant="primary" onClick={handleShow}>
+        Show Comments / Delete Posts
+      </Button>
+
+      <Modal
+        name = 'full table'
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Chart with comments</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+        <div>
+        <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>Food Name</th>
+                <th>Number of Servings</th>
+                <th>Date</th>
+                <th>Comments</th>
+              </tr>
+            </thead>
+              <tbody>
+                {props.parentFood.map((food, index) => {
+                return(
+                <tr key={index}>
+                  <td>{food.name}</td>
+                  <td>{food.servings}</td>
+                  <td>{food.date}</td>
+                  <td>{food.comments}</td>
+                  <td><button onClick = {deleteFood}>delete weight</button></td>
+                </tr>
+                  );
+                })}
+            </tbody>
+          </Table>
+        </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </> 
+          </div> 
       </div>
         
      );
