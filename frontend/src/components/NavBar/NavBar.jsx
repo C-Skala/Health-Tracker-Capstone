@@ -11,8 +11,8 @@ const Navbar = () => {
     <div className="navBar">
       <ul>
         <li className="brand">
-          <Link to="/" style={{ textDecoration: "none", color: "white" }}>
-            <b>Your Home</b>
+          <Link to="/HomeAuth" style={{ textDecoration: "none", color: "white" }}>
+            <b>All Data</b>
           </Link>
         </li>
         <li className="health areas">

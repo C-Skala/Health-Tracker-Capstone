@@ -94,6 +94,19 @@ const BloodSugarPage = (props) => {
           </Table>
         </div>
         <div>
+        <Chart
+            chartType="LineChart"
+            data={[["Date", "Sugar"], ...chartData]}
+            width="100%"
+            height="400px"
+            options = {{legend: {position: 'bottom'}}}
+            legendToggle
+          />
+        </div>
+        <br/>
+        <br/>
+        <div class="d-flex justify-content-center">
+        <div>
         <>
       <Button variant="primary" onClick={handlePostShow}>
         Post a New Blood Sugar
@@ -131,18 +144,6 @@ const BloodSugarPage = (props) => {
       </Modal>
     </>
           </div>
-          
-        
-        <div>
-        <Chart
-            chartType="LineChart"
-            data={[["Date", "Sugar"], ...chartData]}
-            width="100%"
-            height="400px"
-            options = {{legend: {position: 'bottom'}}}
-            legendToggle
-          />
-        </div>
         <div>
           <>
       <Button variant="primary" onClick={handleShow}>
@@ -195,6 +196,10 @@ const BloodSugarPage = (props) => {
     </> 
           </div> 
           </div> 
+
+        </div>
+
+        
 
         
      );

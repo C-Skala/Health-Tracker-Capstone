@@ -83,7 +83,22 @@ const BloodPressurePage = (props) => {
             </tbody>
           </Table>
         </div>
+        
+        
         <div>
+          <Chart
+            chartType="LineChart"
+            data={[["Date", "Systolic", "Diastolic"], ...chartData]}
+            width="100%"
+            height="400px"
+            options = {{legend: {position: 'bottom'}}}
+            legendToggle
+          />
+        </div>
+        <br></br>
+        <br></br>
+        <div class="d-flex justify-content-center">
+           <div >
         <>
       <Button variant="primary" onClick={handlePostShow}>
         Post a New Blood Pressure
@@ -123,18 +138,7 @@ const BloodPressurePage = (props) => {
       </Modal>
     </>
           </div>
-        
-        <div>
-          <Chart
-            chartType="LineChart"
-            data={[["Date", "Systolic", "Diastolic"], ...chartData]}
-            width="100%"
-            height="400px"
-            options = {{legend: {position: 'bottom'}}}
-            legendToggle
-          />
-        </div>
-        <div>
+        <div >
           <>
       <Button variant="primary" onClick={handleShow}>
         Show Comments / Delete Posts
@@ -187,6 +191,10 @@ const BloodPressurePage = (props) => {
       </Modal>
     </> 
           </div> 
+        </div>
+        
+        
+       
 
       </div>
         

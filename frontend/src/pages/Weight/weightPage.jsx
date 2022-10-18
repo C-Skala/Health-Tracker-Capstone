@@ -8,6 +8,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Table from 'react-bootstrap/Table';
+import DeleteWeight from './DeleteWeight'
 
 let initialValues = {
   weight: "",
@@ -32,17 +33,6 @@ const WeightPage = (props) => {
 
   async function postNewWeight(){
     const response = await axios.post('http://127.0.0.1:8000/api/Weight/', formData, {
-      headers: {
-        Authorization: "Bearer " + token,
-      }
-    })
-    console.log(response.data)
-   }
-  
-
-   
-   async function deleteWeight(){
-    const response = await axios.delete(`http://127.0.0.1:8000/api/Weight/${props.parentWeight.id}/`, formData, {
       headers: {
         Authorization: "Bearer " + token,
       }
@@ -86,7 +76,22 @@ const WeightPage = (props) => {
             </tbody>
           </Table>
         </div> 
+        
+          
         <div>
+          <Chart
+            chartType="LineChart"
+            data={[["Date", "Weight"], ...chartData]}
+            width="100%"
+            height="400px"
+            options = {{legend: {position: 'bottom'}, }}
+            legendToggle
+          />
+        </div>
+        <br/>
+        <br/>
+        <div class="d-flex justify-content-center">
+         <div>
         <>
       <Button variant="primary" onClick={handlePostShow}>
         Post a New Weight
@@ -122,17 +127,6 @@ const WeightPage = (props) => {
       </Modal>
     </>
           </div>
-          
-        <div>
-          <Chart
-            chartType="LineChart"
-            data={[["Date", "Weight"], ...chartData]}
-            width="100%"
-            height="400px"
-            options = {{legend: {position: 'bottom'}, }}
-            legendToggle
-          />
-        </div>
         <div>
           <>
       <Button variant="primary" onClick={handleShow}>
@@ -166,7 +160,7 @@ const WeightPage = (props) => {
                   <td>{weight.weight}</td>
                   <td>{weight.date}</td>
                   <td>{weight.comments}</td>
-                  <td><button onClick = {deleteWeight} id = {props.parentWeight.id}>delete weight</button></td>
+                  <td><DeleteWeight id = {weight.id}/></td>
                 </tr>
                   );
                 })}
@@ -181,7 +175,9 @@ const WeightPage = (props) => {
         </Modal.Footer>
       </Modal>
     </> 
-          </div> 
+          </div>  
+        </div>
+        
         </div>
         
      );

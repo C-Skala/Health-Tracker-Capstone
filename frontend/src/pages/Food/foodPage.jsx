@@ -83,7 +83,10 @@ const FoodPage = (props) => {
             </tbody>
           </Table>
         </div>
-        <div>
+        <br/>
+        <br/>
+        <div class="d-flex justify-content-center">
+         <div>
         <>
       <Button variant="primary" onClick={handlePostShow}>
         Post a New Food
@@ -179,7 +182,11 @@ const FoodPage = (props) => {
         </Modal.Footer>
       </Modal>
     </> 
-          </div> 
+          </div>
+
+        </div>
+
+        
       </div>
         
      );

@@ -15,6 +15,7 @@ import FoodPage from "./pages/Food/foodPage"
 import HeartRatePage from "./pages/Heart Rate/heartRatePage"
 import MedicationsPage from "./pages/Medications/MedicationsPage"
 import WeightPage from "./pages/Weight/weightPage"
+import HomePageAUTH from "./pages/Home Page AUTH/homePageAuth";
 
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
@@ -142,17 +143,11 @@ function App() {
     <div>
       <Navbar />
       <Routes>
-        <Route
-          path="/"
-          element={
-            <PrivateRoute>
-              <HomePage parentWeight = {weight} parentBloodPressure = {bloodPressure} parentMedications = {medications} parentFood = {food} parentBloodSugar = {bloodSugar} parentHeartRate = {heartRate}/>
-            </PrivateRoute>
-          }
-        />
+        <Route path="/" element={<HomePage/>}/>
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/weight" element={<PrivateRoute><WeightPage parentWeight = {weight} /></PrivateRoute>} />
+        <Route path="/HomeAuth" element={<PrivateRoute><HomePageAUTH parentWeight = {weight} parentBloodPressure = {bloodPressure} parentMedications = {medications} parentFood = {food} parentBloodSugar = {bloodSugar} parentHeartRate = {heartRate}/></PrivateRoute>} />
         <Route path="/BP" element={<PrivateRoute><BloodPressurePage parentBloodPressure = {bloodPressure} /></PrivateRoute>} />
         <Route path="/medications" element={<PrivateRoute><MedicationsPage parentMedications = {medications}/></PrivateRoute>} />
         <Route path="/food" element={<PrivateRoute><FoodPage parentFood = {food}/></PrivateRoute>} />

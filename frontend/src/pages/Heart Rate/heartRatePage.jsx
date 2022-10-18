@@ -79,7 +79,22 @@ const HeartRatePage = (props) => {
             </tbody>
           </Table>
         </div>
+        
+          
         <div>
+          <Chart
+            chartType="LineChart"
+            data={[["Date", "heart rate"], ...chartData]}
+            width="100%"
+            height="400px"
+            options = {{legend: {position: 'bottom'}, }}
+            legendToggle
+          />
+        </div>
+        <br/>
+        <br/>
+<div class="d-flex justify-content-center">
+  <div>
         <>
       <Button variant="primary" onClick={handlePostShow}>
         Post a New Heart Rate
@@ -117,17 +132,6 @@ const HeartRatePage = (props) => {
       </Modal>
     </>
           </div>
-          
-        <div>
-          <Chart
-            chartType="LineChart"
-            data={[["Date", "Weight"], ...chartData]}
-            width="100%"
-            height="400px"
-            options = {{legend: {position: 'bottom'}, }}
-            legendToggle
-          />
-        </div>
         <div>
           <>
       <Button variant="primary" onClick={handleShow}>
@@ -180,6 +184,9 @@ const HeartRatePage = (props) => {
     </> 
           </div> 
       </div>
+</div>
+
+        
         
      );
 }
