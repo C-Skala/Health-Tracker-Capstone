@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Table from 'react-bootstrap/Table';
+import DeleteBS from './DeleteBS'
 
 let initialValues = {
     sugar: "",
@@ -179,7 +180,7 @@ const BloodSugarPage = (props) => {
                   <td>{bloodSugar.date}</td>
                   <td>{bloodSugar.time}</td>
                   <td>{bloodSugar.comments}</td>
-                  <td><button onClick = {deleteBs}>delete Blood Sugar</button></td>
+                  <td><DeleteBS id = {bloodSugar.id}/></td>
                 </tr>
                   );
                 })}

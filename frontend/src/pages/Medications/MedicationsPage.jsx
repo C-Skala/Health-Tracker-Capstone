@@ -6,6 +6,7 @@ import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import DeleteMedications from './DeleteMedications'
 
 
 let initialValues = {
@@ -46,10 +47,6 @@ const MedicationsPage = (props) => {
     window.location.reload(false);
   } 
   
-  async function deleteMed(){
-    const response = await axios.delete(`http://127.0.0.1:8000/api/meds/${props.parentMedications.id}/`)
-    console.log(response.data)
-}
   
   
   
@@ -169,7 +166,7 @@ const MedicationsPage = (props) => {
                   <td>{medications.strength}</td>
                   <td>{medications.class_of_medication}</td>
                   <td>{medications.comments}</td>
-                  <td><button onClick = {deleteMed}>delete Med</button></td>
+                  <td><DeleteMedications id = {medications.id} buttonName = {'Delete Med'}/></td>
                 </tr>
                   );
                 })}

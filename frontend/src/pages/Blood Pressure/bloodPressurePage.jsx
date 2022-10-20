@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Table from 'react-bootstrap/Table';
+import DeleteBP from './DeleteBP'
 
 let initialValues = {
     systolic: "",
@@ -175,7 +176,7 @@ const BloodPressurePage = (props) => {
                   <td>{bloodPressure.date}</td>
                   <td>{bloodPressure.time}</td>
                   <td>{bloodPressure.comments}</td>
-                  <td><button onClick = {deleteBP}>delete Blood Pressure</button></td>
+                  <td><DeleteBP id = {bloodPressure.id}/></td>
                 </tr>
                   );
                 })}

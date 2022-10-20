@@ -14,19 +14,18 @@ const DeleteWeight = (props) => {
 
 
     async function deleteWeight(){
-    const response = await axios.delete(`http://127.0.0.1:8000/api/Weight/${props.id}/`, formData, {
+    const response = await axios.delete(`http://127.0.0.1:8000/api/Weight/${props.id}/`,{
       headers: {
         Authorization: "Bearer " + token,
       }
     })
-    console.log(response.data)
+    console.log(response.data);
+    window.location.reload(false);
    }
-    
-    
     
     return ( 
         <div onSubmit = {handleSubmit}>
-        <button onClick = {deleteWeight}>Delete Weight</button>
+        <button onClick = {deleteWeight} onChange = {handleInputChange}>Delete Weight</button>
         </div>
      );
 }

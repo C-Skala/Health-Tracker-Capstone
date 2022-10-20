@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Table from 'react-bootstrap/Table';
+import DeleteHR from './DeleteHR'
 
 let initialValues = {
     heart_rate: "",
@@ -167,7 +168,7 @@ const HeartRatePage = (props) => {
                   <td>{heartRate.date}</td>
                   <td>{heartRate.time}</td>
                   <td>{heartRate.comments}</td>
-                  <td><button onClick = {deleteHr}>delete Heart Rate</button></td>
+                  <td><DeleteHR id = {heartRate.id}/></td>
                 </tr>
                   );
                 })}

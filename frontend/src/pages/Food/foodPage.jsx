@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Table from 'react-bootstrap/Table';
+import DeleteFood from './DeleteFood'
 
 let initialValues = {
     name: "",
@@ -167,7 +168,7 @@ const FoodPage = (props) => {
                   <td>{food.servings}</td>
                   <td>{food.date}</td>
                   <td>{food.comments}</td>
-                  <td><button onClick = {deleteFood}>delete weight</button></td>
+                  <td><DeleteFood id = {food.id}/></td>
                 </tr>
                   );
                 })}
