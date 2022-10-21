@@ -17,17 +17,26 @@ const HomePageAUTH = (props) => {
  // const[heartRate, setHeartRate] = useState([]);
  // const[medications, setMedications] = useState([]);
  // const[weight, setWeight] = useState([]);
- const[bpChartData, setBpChartData] = useState([]);
+ const[bpChartDataS, setBpChartDataS] = useState([]);
+ const[bpChartDataD, setBpChartDataD] = useState([]);
  const[bsChartData, setBsChartData] = useState([]);
  const[hrChartData, setHrChartData] = useState([]);
  const[weightChartData, setWeightChartData] = useState([]);
 
  useEffect(() => {
-  let tempBPChartData = props.parentBloodPressure.map(entry => {
-      return [entry.date, entry.systolic, entry.diastolic];
+  let tempBPChartDataS = props.parentBloodPressure.map(entry => {
+      return [entry.date, entry.systolic];
   })
-  setBpChartData(tempBPChartData);
-  console.log(tempBPChartData);
+  setBpChartDataS(tempBPChartDataS);
+  console.log(tempBPChartDataS);
+}, [props.parentBloodPressure]);
+
+ useEffect(() => {
+  let tempBPChartDataD = props.parentBloodPressure.map(entry => {
+      return [entry.date, entry.diastolic];
+  })
+  setBpChartDataD(tempBPChartDataD);
+  console.log(tempBPChartDataD);
 }, [props.parentBloodPressure]);
 
 useEffect(() => {
@@ -59,15 +68,21 @@ useEffect(() => {
 
 
 const data = [
-//  [["Date", "Weight"], ...weightChartData],
-//  [["Date", "Systolic", "Diastolic"], ...bpChartData]
-//]
-  [[['date', 'heart rate'], ...hrChartData], [['date','weight'], ...weightChartData],[['date', 'systolic', 'diastolic'], ...bpChartData], [['date', 'sugar'], ...bsChartData]
 
-  //['10-10-2020',200, 100, 50, 50, 75],
-  //['10-10-2020',250, 150, 90, 90, 150],
-  //['10-10-2020', props.parentWeight.weight, props.parentBloodPressure.systolic, props.parentBloodPressure.diastolic, props.parentHeartRate.heart_rate, props.parentBloodSugar.sugar]
-  ]]
+  ['date', 'weight', 'systolic', 'diastolic', 'sugar', 'heart rate'],
+  ['10-10-2020',250, 150, 90, 90, 150],
+  ['10-10-2020',300, 100, 190, null, 350],
+ 
+]
+
+const options = {
+  title: "all my vitals",
+  vAxis: { title: "" },
+  hAxis: { title: "date" },
+  seriesType: "bars",
+  //series: { 5: { type: "line" } },
+};
+
 
 //
 
@@ -77,11 +92,11 @@ const data = [
       <h1>Home Page for {user.username}!</h1>
       <div>
           <Chart
-            chartType="LineChart"
-        data={data}
+            chartType="ComboChart"
+            data={data}
             width="100%"
             height="400px"
-            options = {{legend: {position: 'bottom'}}}
+            options = {options}
             legendToggle
           />
         </div>
