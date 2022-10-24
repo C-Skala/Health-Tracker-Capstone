@@ -25,4 +25,5 @@ urlpatterns = [
     path('api/BS/', include('Vitals_BS.urls')),
     path('api/HR/', include('Vitals_HR.urls')),
     path('api/Weight/', include('Vitals_Weight.urls')),
+    path('api/Chart/', include('combined_chart_data.urls')),
 ]

@@ -94,7 +94,7 @@ const HeartRatePage = (props) => {
         </div>
         <br/>
         <br/>
-<div class="d-flex justify-content-center">
+<div className="d-flex justify-content-center">
   <div>
         <>
       <Button variant="primary" onClick={handlePostShow}>

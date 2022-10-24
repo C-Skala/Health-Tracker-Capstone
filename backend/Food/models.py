@@ -8,12 +8,12 @@ from authentication.models import User
 
 class Food(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=99)
-    calories = models.IntegerField()
-    carbohydrates = models.IntegerField()
-    sugar = models.IntegerField()
-    sodium = models.IntegerField()
-    servings = models.IntegerField()
-    date = models.DateField(auto_now=False, auto_now_add=False)
-    comments = models.TextField (max_length=999)
+    name = models.CharField(max_length=99, default = None )
+    calories = models.IntegerField(default = None )
+    carbohydrates = models.IntegerField(default = None )
+    sugar = models.IntegerField(default = None )
+    sodium = models.IntegerField(default = None )
+    servings = models.IntegerField(default = None )
+    date = models.DateField(auto_now=False, auto_now_add=False, default = None )
+    comments = models.TextField (max_length=999,default = None )
 

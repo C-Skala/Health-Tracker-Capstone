@@ -32,6 +32,7 @@ function App() {
   const[heartRate, setHeartRate] = useState([]);
   const[medications, setMedications] = useState([]);
   const[weight, setWeight] = useState([]);
+  const[chartData, setChartData] = useState([]);
 
   useEffect(() => {
     async function getAllBloodPressure(){
@@ -42,7 +43,7 @@ function App() {
           },
         });
         setBloodPressure(response.data)
-        console.log(response.data)
+        //console.log(response.data)
       } catch (error) {
         console.log(error.response.data);
       }
@@ -60,7 +61,7 @@ function App() {
           },
         });
         setBloodSugar(response.data);
-        console.log(response.data);
+        //console.log(response.data);
       } catch (error) {
         console.log(error.response.data);
       }
@@ -78,7 +79,7 @@ function App() {
           },
         });
         setFood(response.data);
-        console.log(response.data);
+        //console.log(response.data);
       } catch (error) {
         console.log(error.response.data);
       }
@@ -96,7 +97,7 @@ function App() {
           },
         });
         setHeartRate(response.data);
-        console.log(response.data);
+       // console.log(response.data);
       } catch (error) {
         console.log(error.response.data);
       }
@@ -114,7 +115,7 @@ function App() {
           },
         });
         setMedications(response.data);
-        console.log(response.data);
+        //console.log(response.data);
       } catch (error) {
         console.log(error.response.data);
       }
@@ -131,10 +132,11 @@ function App() {
           },
         });
         setWeight(response.data);
-        console.log(response.data);
+        //console.log(response.data);
     };
     getAllWeight();
   }, [token]);
+
 
  
   

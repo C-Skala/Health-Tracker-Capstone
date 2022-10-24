@@ -22,13 +22,37 @@ from Vitals_Weight.models import Weight
 # Create your views here.
 
 
-@api_view(['GET', 'POST'])
+@api_view(['GET'])
 @permission_classes([IsAuthenticated])
-def HR_list(request):
+def Chart_List(request):
     print(
         'User ', f"{request.user.id} {request.user.email} {request.user.username}")
     if request.method == 'GET':
-        HR = Heart_Rate.objects.filter(user_id=request.user.id)
-        serializer = HeartRateSerializer(HR, many=True)
-        return Response(serializer.data)
+        hr = Heart_Rate.objects.filter(user_id=request.user.id)
+        serializerHR = HeartRateSerializer(hr, many=True)
+        
+
+
+        bp = Blood_Pressure.objects.filter(user_id = request.user.id)
+        serializerBP = BloodPressureSerializer(bp, many= True)
+        
+
+
+        bs = Blood_Sugar.objects.filter(user_id = request.user.id)
+        serializerBS = BloodSugarSerializer(bs, many= True)
+        
+
+
+        weight = Weight.objects.filter(user_id = request.user.id)
+        serializerWeight = WeightSerializer(weight, many= True)
+        
+        
+        
+
+        custom_chart_dictionary={'BP':serializerBP.data, 
+                                "BS":serializerBS.data, 
+                                "HR":serializerHR.data, 
+                                "weight":serializerWeight.data}
+
+        return Response(custom_chart_dictionary)
         

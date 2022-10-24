@@ -12,4 +12,4 @@ class Blood_Pressure(models.Model):
     diastolic = models.IntegerField(default = None)
     date = models.DateField(auto_now=False, auto_now_add=False, default = None)
     time = models.TimeField(auto_now=False, auto_now_add=False)
-    comments = models.TextField (max_length=999)
+    comments = models.TextField (max_length=999, default = None)
