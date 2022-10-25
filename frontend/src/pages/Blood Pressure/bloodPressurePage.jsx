@@ -60,7 +60,7 @@ const BloodPressurePage = (props) => {
   
   return ( 
       <div>
-        <div>
+        <div className="d-flex justify-content-center">
         <Table striped bordered hover>
             <thead>
               <tr>
@@ -86,7 +86,7 @@ const BloodPressurePage = (props) => {
         </div>
         
         
-        <div>
+        <div className="d-flex justify-content-center">
           <Chart
             chartType="LineChart"
             data={[["Date", "Systolic", "Diastolic"], ...chartData]}
@@ -98,7 +98,7 @@ const BloodPressurePage = (props) => {
         </div>
         <br></br>
         <br></br>
-        <div className="d-flex justify-content-center">
+        <div className="d-flex justify-content-around">
            <div >
         <>
       <Button variant="primary" onClick={handlePostShow}>
@@ -106,6 +106,7 @@ const BloodPressurePage = (props) => {
       </Button>
       <Modal
         name = 'Post'
+        size = 'lg'
         show={showPost}
         onHide={handlePostClose}
         backdrop="static"
@@ -119,14 +120,19 @@ const BloodPressurePage = (props) => {
             <form onSubmit = {handleSubmit}>
                 <label>Systolic:{" "}</label>
                   <input type = 'number' name = 'systolic' value = {formData.systolic} onChange = {handleInputChange}/>
+                  <br/>
                 <label>Diastolic:{" "}</label>
                   <input type = 'number' name = 'diastolic' value = {formData.diastolic} onChange = {handleInputChange}/>
+                  <br/>
                 <label>Date:{" "}</label>
                   <input type = 'date' name = 'date' value = {formData.date} onChange = {handleInputChange}/>
+                  <br/>
                 <label>Time:{" "}</label>
                   <input type = 'time' name = 'time' value = {formData.time} onChange = {handleInputChange}/>
+                  <br/>
                 <label>comments:{" "}</label>
                   <input type = "text" name = 'comments' value = {formData.comments} onChange = {handleInputChange}/>
+                  <br/>
                 <button onClick={refreshPage}>submit</button>
             </form>
         </div> 
@@ -147,6 +153,7 @@ const BloodPressurePage = (props) => {
 
       <Modal
         name = 'full table'
+        size = 'lg'
         show={show}
         onHide={handleClose}
         backdrop="static"

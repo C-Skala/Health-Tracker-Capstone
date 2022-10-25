@@ -33,7 +33,6 @@ const HomePageAUTH = (props) => {
       return [entry.date, entry.systolic, entry.diastolic];
   })
   setBpChartData(tempBPChartData);
-  console.log(tempBPChartData);
 }, [props.parentBloodPressure]);
 
 useEffect(() => {
@@ -41,7 +40,6 @@ useEffect(() => {
       return [entry.date, entry.sugar];
   })
   setBsChartData(tempBSChartData);
-  console.log(tempBSChartData);
 }, [props.parentBloodSugar]);
 
 
@@ -50,7 +48,6 @@ useEffect(() => {
       return [entry.date, entry.heart_rate];
   })
   setHrChartData(tempHRChartData);
-  console.log(tempHRChartData);
 }, [props.parentHeartRate]);
 
 useEffect(() => {
@@ -64,7 +61,7 @@ function ShowWeight() {
   const [show, setShow] = useState(false);
 return(
 <Row>
-      <Col xs={6}>
+      <Col xs={100}>
         <Toast onClose={() => setShow(false)} show={show}>
           <Toast.Header>
             <img
@@ -93,7 +90,7 @@ function ShowSugar() {
   const [show, setShow] = useState(false);
 return(
 <Row>
-      <Col xs={6}>
+      <Col xs={100}>
         <Toast onClose={() => setShow(false)} show={show}>
           <Toast.Header>
             <img
@@ -122,7 +119,7 @@ function ShowHeartRate() {
   const [show, setShow] = useState(false);
 return(
 <Row>
-      <Col xs={6}>
+      <Col xs={100}>
         <Toast onClose={() => setShow(false)} show={show}>
           <Toast.Header>
             <img
@@ -151,7 +148,7 @@ function ShowBloodPressure() {
   const [show, setShow] = useState(false);
 return(
 <Row>
-      <Col xs={6}>
+      <Col xs={100}>
         <Toast onClose={() => setShow(false)} show={show}>
           <Toast.Header>
             <img
@@ -181,16 +178,20 @@ return(
 
   return (
     <div className="container">
-      <h1>Home Page for {user.username}!</h1>
+      <h1>Home Page for {user.first_name}!</h1>
       <div>
       <div className="d-flex justify-content-center">
       {ShowWeight()}
       {ShowSugar()}
-      {ShowHeartRate()}
-      {ShowBloodPressure()}
+      
       </div>
-     
+      <br/>
+      <div className="d-flex justify-content-center">
+        {ShowHeartRate()}
+      {ShowBloodPressure()}
         </div>
+        </div>
+        <br/>
         <div>
           <Table striped bordered hover>
             <thead>

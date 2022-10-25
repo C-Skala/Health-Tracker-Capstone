@@ -84,7 +84,7 @@ const MedicationsPage = (props) => {
         </div>
 <br/>
 <br/>
-<div className="d-flex justify-content-center">
+<div className="d-flex justify-content-around">
 <div>
         <>
       <Button variant="primary" onClick={handlePostShow}>
@@ -92,6 +92,7 @@ const MedicationsPage = (props) => {
       </Button>
       <Modal
         name = 'Post'
+        size = 'lg'
         show={showPost}
         onHide={handlePostClose}
         backdrop="static"
@@ -103,22 +104,30 @@ const MedicationsPage = (props) => {
         <Modal.Body>
         <div>
             <form onSubmit = {handleSubmit}>
-            <label>Name of Medication:{" "}</label>
+            <label>Name of Medication: {" "}</label>
                   <input type = 'text' name = 'name' value = {formData.name} onChange = {handleInputChange}/>
-                <label>Strength:{" "}</label>
+                  <br/>
+                <label>Strength: {" "}</label>
                   <input type = 'number' name = 'strength' value = {formData.strength} onChange = {handleInputChange}/>
-                <label>Class of Medication:{" "}</label>
+                  <br/>
+                <label>Class of Medication: {" "}</label>
                   <input type = 'text' name = 'class_of_medication' value = {formData.class_of_medication} onChange = {handleInputChange}/>
-                <label>Time Taking (1):{" "}</label>
+                  <br/>
+                <label>Time Taking (1): {" "}</label>
                   <input type = 'time' name = 'time_taking1' value = {formData.time_taking1} onChange = {handleInputChange}/>
-                <label>Time Taking (2):{" "}</label>
+                  <br/>
+                <label>Time Taking (2): {" "}</label>
                   <input type = 'time' name = 'time_taking2' value = {formData.time_taking2} onChange = {handleInputChange}/>
-                <label>Time Taking (3):{" "}</label>
+                  <br/>
+                <label>Time Taking (3): {" "}</label>
                   <input type = 'time' name = 'time_taking3' value = {formData.time_taking3} onChange = {handleInputChange}/>
-                <label>Time Taking (4):{" "}</label>
+                  <br/>
+                <label>Time Taking (4): {" "}</label>
                   <input type = 'time' name = 'time_taking4' value = {formData.time_taking4} onChange = {handleInputChange}/>
-                <label>comments:{" "}</label>
+                  <br/>
+                <label>comments: {" "}</label>
                   <input type = "text" name = 'comments' value = {formData.comments} onChange = {handleInputChange}/>
+                  <br/>
                 <button onClick={refreshPage}>submit</button>
             </form>
         </div> 
@@ -139,6 +148,7 @@ const MedicationsPage = (props) => {
 
       <Modal
         name = 'full table'
+        size = 'lg'
         show={show}
         onHide={handleClose}
         backdrop="static"

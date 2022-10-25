@@ -90,14 +90,15 @@ const WeightPage = (props) => {
         </div>
         <br/>
         <br/>
-        <div className="d-flex justify-content-center">
+        <div className="d-flex justify-content-around">
          <div>
         <>
-      <Button variant="primary" onClick={handlePostShow}>
+      <Button variant="primary" onClick={handlePostShow} >
         Post a New Weight
       </Button>
       <Modal
         name = 'Post'
+        size = 'lg'
         show={showPost}
         onHide={handlePostClose}
         backdrop="static"
@@ -111,10 +112,13 @@ const WeightPage = (props) => {
       <form onSubmit = {handleSubmit}>
                <label>Weight:{" "}</label>
                 <input type = 'number' name = 'weight' value = {formData.weight} onChange = {handleInputChange}/>
+                <br/>
                 <label>Date:{" "}</label>
                   <input type = 'date' name = 'date' value = {formData.date} onChange = {handleInputChange}/>
+                  <br/>
                 <label>comments:{" "}</label>
                   <input type = "text" name = 'comments' value = {formData.comments} onChange = {handleInputChange}/>
+                  <br/>
                 <button onClick={refreshPage}>submit</button>
             </form>
      </div>
@@ -135,6 +139,7 @@ const WeightPage = (props) => {
 
       <Modal
         name = 'full table'
+        size = 'lg'
         show={show}
         onHide={handleClose}
         backdrop="static"

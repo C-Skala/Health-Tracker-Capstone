@@ -86,7 +86,7 @@ const FoodPage = (props) => {
         </div>
         <br/>
         <br/>
-        <div className="d-flex justify-content-center">
+        <div className="d-flex justify-content-around">
          <div>
         <>
       <Button variant="primary" onClick={handlePostShow}>
@@ -94,6 +94,7 @@ const FoodPage = (props) => {
       </Button>
       <Modal
         name = 'Post'
+        size = 'lg'
         show={showPost}
         onHide={handlePostClose}
         backdrop="static"
@@ -107,20 +108,28 @@ const FoodPage = (props) => {
             <form onSubmit = {handleSubmit}>
                 <label>Nme of Food:{" "}</label>
                   <input type = 'text' name = 'name' value = {formData.name} onChange = {handleInputChange}/>
+                  <br/>
                 <label>Calories per serving:{" "}</label>
                   <input type = 'number' name = 'calories' value = {formData.calories} onChange = {handleInputChange}/>
+                  <br/>
                 <label>Carbohydrates per Serving:{" "}</label>
                   <input type = 'number' name = 'carbohydrates' value = {formData.carbohyrates} onChange = {handleInputChange}/>
+                  <br/>
                 <label>Sugar per Serving:{" "}</label>
                   <input type = 'number' name = 'sugar' value = {formData.sugar} onChange = {handleInputChange}/>
+                  <br/>
                 <label>Sodium per Serving:{" "}</label>
                   <input type = 'number' name = 'sodium' value = {formData.sodium} onChange = {handleInputChange}/>
+                  <br/>
                 <label>Number of Servings:{" "}</label>
                   <input type = 'number' name = 'servings' value = {formData.servings} onChange = {handleInputChange}/>
+                  <br/>
                 <label>Date:{" "}</label>
                   <input type = 'date' name = 'date' value = {formData.date} onChange = {handleInputChange}/>
+                  <br/>
                 <label>comments:{" "}</label>
                   <input type = "text" name = 'comments' value = {formData.comments} onChange = {handleInputChange}/>
+                  <br/>
                 <button onClick={refreshPage}>submit</button>
             </form>
         </div>
@@ -141,6 +150,7 @@ const FoodPage = (props) => {
 
       <Modal
         name = 'full table'
+        size = 'lg'
         show={show}
         onHide={handleClose}
         backdrop="static"

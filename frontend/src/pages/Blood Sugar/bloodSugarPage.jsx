@@ -106,7 +106,7 @@ const BloodSugarPage = (props) => {
         </div>
         <br/>
         <br/>
-        <div className="d-flex justify-content-center">
+        <div className="d-flex justify-content-around">
         <div>
         <>
       <Button variant="primary" onClick={handlePostShow}>
@@ -114,6 +114,7 @@ const BloodSugarPage = (props) => {
       </Button>
       <Modal
         name = 'Post'
+        size = 'lg'
         show={showPost}
         onHide={handlePostClose}
         backdrop="static"
@@ -127,12 +128,16 @@ const BloodSugarPage = (props) => {
             <form onSubmit = {handleSubmit}>
                 <label>Sugar:{" "}</label>
                   <input type = 'number' name = 'sugar' value = {formData.sugar} onChange = {handleInputChange}/>
+                  <br/>
                 <label>Date:{" "}</label>
                   <input type = 'date' name = 'date' value = {formData.date} onChange = {handleInputChange}/>
+                  <br/>
                 <label>Time:{" "}</label>
                   <input type = 'time' name = 'time' value = {formData.time} onChange = {handleInputChange}/>
+                  <br/>
                 <label>comments:{" "}</label>
                   <input type = "text" name = 'comments' value = {formData.comments} onChange = {handleInputChange}/>
+                  <br/>
                 <button onClick={refreshPage}>submit</button>
             </form>
         </div> 
@@ -153,6 +158,7 @@ const BloodSugarPage = (props) => {
 
       <Modal
         name = 'full table'
+        size = 'lg'
         show={show}
         onHide={handleClose}
         backdrop="static"

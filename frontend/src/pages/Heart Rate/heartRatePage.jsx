@@ -94,7 +94,7 @@ const HeartRatePage = (props) => {
         </div>
         <br/>
         <br/>
-<div className="d-flex justify-content-center">
+<div className="d-flex justify-content-around">
   <div>
         <>
       <Button variant="primary" onClick={handlePostShow}>
@@ -102,6 +102,7 @@ const HeartRatePage = (props) => {
       </Button>
       <Modal
         name = 'Post'
+        size = 'lg'
         show={showPost}
         onHide={handlePostClose}
         backdrop="static"
@@ -115,12 +116,16 @@ const HeartRatePage = (props) => {
             <form onSubmit = {handleSubmit}>
                 <label>Heart Rate:{" "}</label>
                   <input type = 'number' name = 'heart_rate' value = {formData.heart_rate} onChange = {handleInputChange}/>
+                  <br/>
                 <label>Date:{" "}</label>
                   <input type = 'date' name = 'date' value = {formData.date} onChange = {handleInputChange}/>
+                  <br/>
                 <label>Time:{" "}</label>
                   <input type = 'time' name = 'time' value = {formData.time} onChange = {handleInputChange}/>
+                  <br/>
                 <label>comments:{" "}</label>
                   <input type = "text" name = 'comments' value = {formData.comments} onChange = {handleInputChange}/>
+                  <br/>
                 <button onClick={refreshPage}>submit</button>
             </form>
         </div> 
@@ -141,6 +146,7 @@ const HeartRatePage = (props) => {
 
       <Modal
         name = 'full table'
+        size = 'lg'
         show={show}
         onHide={handleClose}
         backdrop="static"
