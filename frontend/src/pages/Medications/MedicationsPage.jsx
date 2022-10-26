@@ -120,13 +120,13 @@ const MedicationsPage = (props) => {
                   <input type = 'time' name = 'time_taking2' value = {formData.time_taking2} onChange = {handleInputChange}/>
                   <br/>
                 <label>Time Taking (3): {" "}</label>
-                  <input type = 'time' name = 'time_taking3' value = {formData.time_taking3} onChange = {handleInputChange}/>
+                  <input type = 'time' name = 'time_taking3'  value = {formData.time_taking3} onChange = {handleInputChange}/>
                   <br/>
                 <label>Time Taking (4): {" "}</label>
-                  <input type = 'time' name = 'time_taking4' value = {formData.time_taking4} onChange = {handleInputChange}/>
+                  <input type = 'time' name = 'time_taking4'  value = {formData.time_taking4} onChange = {handleInputChange}/>
                   <br/>
                 <label>comments: {" "}</label>
-                  <input type = "text" name = 'comments' value = {formData.comments} onChange = {handleInputChange}/>
+                  <input type = "text" name = 'comments'  value = {formData.comments} onChange = {handleInputChange}/>
                   <br/>
                 <button onClick={refreshPage}>submit</button>
             </form>

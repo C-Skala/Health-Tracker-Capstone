@@ -106,7 +106,7 @@ const FoodPage = (props) => {
         <Modal.Body>
         <div>
             <form onSubmit = {handleSubmit}>
-                <label>Nme of Food:{" "}</label>
+                <label>Name of Food:{" "}</label>
                   <input type = 'text' name = 'name' value = {formData.name} onChange = {handleInputChange}/>
                   <br/>
                 <label>Calories per serving:{" "}</label>
